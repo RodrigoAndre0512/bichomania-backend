@@ -9,7 +9,7 @@ const multer = require('multer');
 const path = require("path");
 require('dotenv').config(); 
 const app = express();
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 //bcrypt.hash("mathias123", 10).then(h => console.log(h));
 app.use(cors());
@@ -32,11 +32,11 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 const db = mysql.createConnection({
-    host: 'beya4xpagwja2awdazrt-mysql.services.clever-cloud.com',
-    user: 'ur0oh98emo8pzsxk',
-    password: 'QYxvsDl9y4JZkdp8DfFm',
-    database: 'beya4xpagwja2awdazrt',
-    port: 3306,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: 3306
 });
 db.connect((err) => {
     if (err) {
