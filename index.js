@@ -39,7 +39,8 @@ const db = mysql.createPool({
   port: 3306,
   waitForConnections: true,
   connectionLimit: 10,
-  queueLimit: 0
+  queueLimit: 0,
+  ssl: { rejectUnauthorized: false } 
 });
 
 app.get('/', (req, res) => {
